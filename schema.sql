@@ -1,11 +1,5 @@
 PRAGMA foreign_keys = ON;
-CREATE TABLE IF NOT EXISTS genres (
-id INTEGER PRIMARY KEY,
-name TEXT NOT NULL UNIQUE
-);
-
-
-CREATE TABLE IF NOT EXISTS  users (
+CREATE TABLE IF NOT EXISTS  patient (
 id INTEGER PRIMARY KEY,
 name TEXT NOT NULL,
 password TEXT NOT NULL,
@@ -13,130 +7,76 @@ phone TEXT,
 email TEXT NOT NULL UNIQUE,
 birthdate DATE,
 gender TEXT,
-photo TEXT,
 is_admin BOOLEAN NOT NULL DEFAULT False
 );
 
-CREATE TABLE IF NOT EXISTS people (
+
+CREATE TABLE IF NOT EXISTS  Doctor (
 id INTEGER PRIMARY KEY,
 name TEXT NOT NULL,
-photo TEXT
-);
-
-CREATE TABLE IF NOT EXISTS movies (
-id INTEGER PRIMARY KEY,
-title TEXT NOT NULL,
+password TEXT NOT NULL,
+phone TEXT,
+email TEXT NOT NULL UNIQUE,
+age TEXT,
+gender TEXT,
+specialty TEXT,
 description TEXT,
-release DATE,
-length TEXT,
-rating REAL,
-poster TEXT,
-trailer TEXT,
-is_featured BOOLEAN NOT NULL DEFAULT False
+years_of_practice TEXT,
+is_admin BOOLEAN NOT NULL DEFAULT False
 );
 
 
-CREATE TABLE IF NOT EXISTS shows (
+CREATE TABLE IF NOT EXISTS reservation_available (
 id INTEGER PRIMARY KEY,
-title TEXT NOT NULL,
-description TEXT,
-release DATE,
-rating REAL,
-poster TEXT,
-trailer TEXT,
-is_featured BOOLEAN NOT NULL DEFAULT False
+date DATE,
+time TIME,
+is_available BOOLEAN NOT NULL DEFAULT False,
+FOREIGN KEY (Doctor_id) REFERENCES Doctor(id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS seasons (
+CREATE TABLE IF NOT EXISTS address (
 id INTEGER PRIMARY KEY,
-name TEXT NOT NULL,
-num_episodes INTEGER,
-release DATE,
-poster TEXT,
-trailer TEXT,
-show_id INTEGER,
-FOREIGN KEY (show_id) REFERENCES shows(id)
-);
-
-CREATE TABLE IF NOT EXISTS episodes (
-id INTEGER PRIMARY KEY,
-title TEXT NOT NULL,
-description TEXT,
-release DATE,
-length TEXT,
-rating REAL,
-trailer TEXT,
-season_id INTEGER,
-FOREIGN KEY (season_id) REFERENCES seasons(id)
-ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS movies_actors (
-id INTEGER PRIMARY KEY,
-people_id INTEGER,
-movie_id INTEGER,
-FOREIGN KEY (people_id) REFERENCES people(id) ON DELETE CASCADE,
-FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS movies_directors (
-id INTEGER PRIMARY KEY,
-people_id INTEGER,
-movie_id INTEGER,
-FOREIGN KEY (people_id) REFERENCES people(id) ON DELETE CASCADE,
-FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+addresses TEXT NOT NULL
 );
 
 
-CREATE TABLE IF NOT EXISTS movies_genres (
+CREATE TABLE IF NOT EXISTS specialty (
 id INTEGER PRIMARY KEY,
-genre_id INTEGER,
-movie_id INTEGER,
-FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE,
-FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+specialties TEXT NOT NULL
 );
 
 
-CREATE TABLE IF NOT EXISTS shows_actors (
+CREATE TABLE IF NOT EXISTS doctors_address (
 id INTEGER PRIMARY KEY,
-people_id INTEGER,
-show_id INTEGER,
-FOREIGN KEY (people_id) REFERENCES people(id) ON DELETE CASCADE,
-FOREIGN KEY (show_id) REFERENCES shows(id) ON DELETE CASCADE
+FOREIGN KEY (Doctor_id) REFERENCES Doctor(id) ON DELETE CASCADE
+FOREIGN KEY (address_id) REFERENCES address(id) ON DELETE CASCADE
 );
 
 
-CREATE TABLE IF NOT EXISTS shows_directors (
+CREATE TABLE IF NOT EXISTS patients_address (
 id INTEGER PRIMARY KEY,
-people_id INTEGER,
-show_id INTEGER,
-FOREIGN KEY (people_id) REFERENCES people(id) ON DELETE CASCADE,
-FOREIGN KEY (show_id) REFERENCES shows(id) ON DELETE CASCADE
+FOREIGN KEY (patient_id) REFERENCES patient(id) ON DELETE CASCADE
+FOREIGN KEY (address_id) REFERENCES address(id) ON DELETE CASCADE
 );
 
 
-CREATE TABLE IF NOT EXISTS shows_genres (
+CREATE TABLE IF NOT EXISTS doctors_specialties (
 id INTEGER PRIMARY KEY,
-genre_id INTEGER,
-show_id INTEGER,
-FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE,
-FOREIGN KEY (show_id) REFERENCES shows(id) ON DELETE CASCADE
+FOREIGN KEY (Doctor_id) REFERENCES Doctor(id) ON DELETE CASCADE
+FOREIGN KEY (specialty_id) REFERENCES specialty(id) ON DELETE CASCADE
 );
 
 
-CREATE TABLE IF NOT EXISTS users_movies (
+CREATE TABLE IF NOT EXISTS patient_reservation (
 id INTEGER PRIMARY KEY,
-user_id INTEGER,
-movie_id INTEGER,
-FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+FOREIGN KEY (patient_id) REFERENCES patient(id) ON DELETE CASCADE
+FOREIGN KEY (Doctor_id) REFERENCES Doctor(id) ON DELETE CASCADE
+FOREIGN KEY (reservation_available_id) REFERENCES reservation_available(id) ON DELETE CASCADE
 );
 
 
-CREATE TABLE IF NOT EXISTS users_shows (
+CREATE TABLE IF NOT EXISTS patient_history (
 id INTEGER PRIMARY KEY,
-user_id INTEGER,
-show_id INTEGER,
-FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-FOREIGN KEY (show_id) REFERENCES shows(id) ON DELETE CASCADE
+FOREIGN KEY (patient_id) REFERENCES patient(id) ON DELETE CASCADE
+FOREIGN KEY (patient_reservation_id) REFERENCES patient_reservation(id) ON DELETE CASCADE
 );
