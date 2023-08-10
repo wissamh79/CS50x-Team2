@@ -1,6 +1,6 @@
-# Movies and Shows Project for students
+# Medicina Project for for patients and doctors
 
-##### The aim of this project is just to teach the students some fundamental concepts and optimization was **NOT** considered at all.
+##### The aim of this project is to create an electronic system for reservations with doctors, as well as to follow up the patient's previous condition by adding his review history.
 
 To run this project, most importantly, python needs to be installed on the host machine. To check if python is installed, run
 `python --version`
@@ -24,11 +24,12 @@ Now that we have python installed, follow the steps:
 | Route                            | Html to Render                            |
 | -------------------------------- | ----------------------------------------- |
 | `/`                              | `templates/index.html`                    |
-| `/movies`                        | `templates/movies.html`                   |
-| `/movies/<movie_id>`             | `templates/movie_details.html`            |
-| `/admin/movies`                  | `templates/admin/movies/movies_list.html` |
-| `/admin/movies/add`              | `templates/admin/movies/movie_add.html`   |
-| `/admin/movies/<movie_id>/edit`  | `templates/admin/movies/movie_edit.html`  |
-| `/admin/people`                  | `templates/admin/people/people_list.html` |
-| `/admin/people/add`              | `templates/admin/people/people_add.html`  |
-| `/admin/people/<people_id>/edit` | `templates/admin/people/people_edit.html` |
+| `/signup`                        | `templates/registration.html`             |
+| `/login`                         | `templates/login.html`                    |
+| `/logout`                        | `templates/logout.html`                   |
+| `/patient personal page`         | `templates/patient_profile.html`          |
+| `/doctor's personal page`        | `templates/doctor_profile.html`           |
+| `/doctor's purview page`         | `templates/doctors_purview.html`          |
+| `/patient history page`          | `templates/patient_history.html`          |
+| `/reservations`                  | `templates/reservations.html`             |
+| `/confirm reservations`          | `templates/confirm.html`                  |
