@@ -1,83 +1,53 @@
 PRAGMA foreign_keys = ON;
-CREATE TABLE IF NOT EXISTS  patient (
-id INTEGER PRIMARY KEY,
-name TEXT NOT NULL,
-password TEXT NOT NULL,
-phone TEXT,
-email TEXT NOT NULL UNIQUE,
-birthdate DATE,
-gender TEXT,
-is_admin BOOLEAN NOT NULL DEFAULT False
+
+CREATE TABLE IF NOT EXISTS user (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    password TEXT NOT NULL,
+    phone TEXT,
+    email TEXT NOT NULL UNIQUE,
+    birthdate DATE,
+    gender TEXT,
+    patients_address TEXT,
+    is_admin BOOLEAN NOT NULL DEFAULT False,
+    is_doctor BOOLEAN NOT NULL DEFAULT False
 );
 
-
-CREATE TABLE IF NOT EXISTS  Doctor (
-id INTEGER PRIMARY KEY,
-name TEXT NOT NULL,
-password TEXT NOT NULL,
-phone TEXT,
-email TEXT NOT NULL UNIQUE,
-age TEXT,
-gender TEXT,
-specialty TEXT,
-description TEXT,
-years_of_practice TEXT,
-is_admin BOOLEAN NOT NULL DEFAULT False
+CREATE TABLE IF NOT EXISTS Doctor (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    phone TEXT,
+    email TEXT NOT NULL UNIQUE,
+    age TEXT,
+    gender TEXT,
+    specialty TEXT,
+    description TEXT,
+    years_of_practice TEXT,
+    doctors_address TEXT,
+    is_available BOOLEAN NOT NULL DEFAULT False,
+    user_id INTEGER UNIQUE,
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );
-
-
-CREATE TABLE IF NOT EXISTS reservation_available (
-id INTEGER PRIMARY KEY,
-date DATE,
-time TIME,
-is_available BOOLEAN NOT NULL DEFAULT False,
-FOREIGN KEY (Doctor_id) REFERENCES Doctor(id) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS address (
-id INTEGER PRIMARY KEY,
-addresses TEXT NOT NULL
-);
-
 
 CREATE TABLE IF NOT EXISTS specialty (
-id INTEGER PRIMARY KEY,
-specialties TEXT NOT NULL
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    doctor_id INTEGER,
+    FOREIGN KEY (doctor_id) REFERENCES Doctor(id)
 );
-
-
-CREATE TABLE IF NOT EXISTS doctors_address (
-id INTEGER PRIMARY KEY,
-FOREIGN KEY (Doctor_id) REFERENCES Doctor(id) ON DELETE CASCADE,
-FOREIGN KEY (address_id) REFERENCES address(id) ON DELETE CASCADE
-);
-
-
-CREATE TABLE IF NOT EXISTS patients_address (
-id INTEGER PRIMARY KEY,
-FOREIGN KEY (patient_id) REFERENCES patient(id) ON DELETE CASCADE,
-FOREIGN KEY (address_id) REFERENCES address(id) ON DELETE CASCADE
-);
-
-
-CREATE TABLE IF NOT EXISTS doctors_specialties (
-id INTEGER PRIMARY KEY,
-FOREIGN KEY (Doctor_id) REFERENCES Doctor(id) ON DELETE CASCADE,
-FOREIGN KEY (specialty_id) REFERENCES specialty(id) ON DELETE CASCADE
-);
-
 
 CREATE TABLE IF NOT EXISTS patient_reservation (
-id INTEGER PRIMARY KEY,
-FOREIGN KEY (patient_id) REFERENCES patient(id) ON DELETE CASCADE,
-FOREIGN KEY (Doctor_id) REFERENCES Doctor(id) ON DELETE CASCADE,
-FOREIGN KEY (reservation_available_id) REFERENCES reservation_available(id) ON DELETE CASCADE
+    id INTEGER PRIMARY KEY,
+    patient_id INTEGER,
+    doctor_id INTEGER,
+    FOREIGN KEY (patient_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (doctor_id) REFERENCES Doctor(id) ON DELETE CASCADE
 );
 
-
 CREATE TABLE IF NOT EXISTS patient_history (
-id INTEGER PRIMARY KEY,
-
-FOREIGN KEY (patient_id) REFERENCES patient(id) ON DELETE CASCADE,
-FOREIGN KEY (patient_reservation_id) REFERENCES patient_reservation(id) ON DELETE CASCADE
+    id INTEGER PRIMARY KEY,
+    patient_id INTEGER,
+    patient_reservation_id INTEGER,
+    FOREIGN KEY (patient_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (patient_reservation_id) REFERENCES patient_reservation(id) ON DELETE CASCADE
 );
