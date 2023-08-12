@@ -12,6 +12,6 @@ general_router = Blueprint(
 @general_router.get("/")
 def index():
    
-    specialties = db.execute("SELECT * FROM specialty ORDER BY release DESC LIMIT 10;")
+    specialties = db.execute("SELECT * FROM specialty ORDER BY name DESC LIMIT 10;")
    
     return render_template("index.html", specialties=specialties)

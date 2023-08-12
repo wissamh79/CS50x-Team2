@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Doctor (
 
 CREATE TABLE IF NOT EXISTS specialty (
     id INTEGER PRIMARY KEY,
-    specialties TEXT NOT NULL,
+    name TEXT NOT NULL,
     doctor_id INTEGER,
     FOREIGN KEY (doctor_id) REFERENCES Doctor(id)
 );
