@@ -10,33 +10,22 @@ admin_router = Blueprint(
 )
 
 
-@admin_router.route("/movies")
-def admin_movies_list():
-    movies = db.execute("SELECT * FROM movies;")
-    return render_template("admin/movies/movies_list.html", movies=movies)
+@admin_router.route("/")
+def admin_specialty_list():
+    specialty = db.execute("SELECT * FROM specialty;")
+    return render_template("admin/specialty/adminLayout.html", specialty=specialty)
 
 
-@admin_router.route("/movies/add", methods=["GET", "POST"])
-def admin_movies():
+@admin_router.route("/specialty_add", methods=["GET", "POST"])
+def admin_specialty_add():
     if request.method == "GET":
-        people = db.execute("SELECT id, name FROM people ORDER BY name ASC;")
-        genres = db.execute("SELECT id, name FROM genres ORDER BY name ASC;")
-
+        specialty = db.execute("SELECT id, name, FROM specialty ORDER BY name ASC;")
+        
         return render_template(
-            "admin/movies/movie_add.html", data={"people": people, "genres": genres}
+            "admin/specialty_add.html", data={"specialty": specialty}
         )
     else:
-        title = request.form.get("title")
-        description = request.form.get("description")
-        release = request.form.get("release")
-        length = request.form.get("length")
-        rating = request.form.get("rating")
-        trailer = request.form.get("trailer")
-        is_featured = True if request.form.get("is_featured") == "on" else False
-        image = request.files.get("poster", None)
-        genres = request.form.getlist("genre")
-        actors = request.form.getlist("actors")
-        directors = request.form.getlist("directors")
+        name = request.form.get("name")
 
         res = requests.post(
             "https://api.imgbb.com/1/upload",
@@ -48,54 +37,73 @@ def admin_movies():
             image = data["data"]["url"]
         else:
             image = ""
-        # Insert movies table information
-        movie_id = db.execute(
+        # Insert specialties table information
+        specialty = db.execute(
             """
-                   INSERT INTO movies 
-                   (title, description, release, length, 
-                   rating, trailer, is_featured, poster)
+                   INSERT INTO specialty 
+                   (name, image)
                    """,
-            title,
-            description,
-            release,
-            length,
-            rating,
-            trailer,
-            bool(is_featured),
+            name,
             image,
         )
-        # Insert genres
-        db.execute(
-            """
-                   INSERT INTO movies_genres (movie_id, genre_id)
-                   SELECT ? AS movieID ,genres.id
-                   FROM genres WHERE genres.id IN (?);
-                   """,
-            movie_id,
-            genres,
-        )
-        # Insert Actors
-        db.execute(
-            """
-                   INSERT INTO movies_actors (movie_id, people_id)
-                   SELECT ? AS movieID ,people.id
-                   FROM people WHERE people.id IN (?);
-                   """,
-            movie_id,
-            actors,
-        )
-        # Insert Directors
-        db.execute(
-            """
-                   INSERT INTO movies_directors (movie_id, people_id)
-                   SELECT ? AS movieID ,people.id
-                   FROM people WHERE people.id IN (?);
-                   """,
-            movie_id,
-            directors,
-        )
-        return redirect("/admin/movies")
+        return redirect("/admin")
+    
+@admin_router.route("/specialty")
+def admin_doctor():
+    Doctor = db.execute("SELECT * FROM Doctor;")
+    return render_template("admin/specialty/specialty_add.html", Doctor=Doctor)
 
+
+@admin_router.route("/specialty/doctor_add", methods=["GET", "POST"])
+def admin_doctors_add():
+    if request.method == "GET":
+        Doctor = db.execute("SELECT id, name, specialty, description, doctors_address FROM Doctor ORDER BY name ASC;")
+        
+        return render_template(
+            "admin/specialty/Doctor_add.html", data={"name": name, "specialty": specialty }
+        )
+    else:
+        name = request.form.get("name")
+        description = request.form.get("description")
+        phone = request.form.get("phone")
+        email = request.form.get("email")
+        gender = request.form.get("gender")
+        specialty = request.form.get("specialty")
+        is_available = True if request.form.get("is_available") == "on" else False
+        years_of_practice = request.form.getlist("years_of_practice")
+        doctors_address = request.form.getlist("doctors_address")
+        user_id = request.form.getlist("user_id")
+
+        res = requests.post(
+            "https://api.imgbb.com/1/upload",
+            files={"image": image},
+            params={"key": "b541fcbfce81e58bba252fdd01197bbf"},
+        )
+        if res.ok:
+            data = res.json()
+            image = data["data"]["url"]
+        else:
+            image = ""
+        # Insert Doctors table information
+        Doctor = db.execute(
+            """
+                   INSERT INTO Doctor 
+                   (name, description, specialty, phone, 
+                   email, gende, is_available, years_of_practice, doctors_address, user_id)
+                   """,
+            name,
+            description,
+            specialty,
+            phone,
+            email,
+            gender,
+            bool(is_available),
+            years_of_practice,
+            doctors_address,
+            user_id,
+        )
+        return redirect("/admin/specialty/doctor_add")
+    
 
 @admin_router.route("/movies/<movie_id>/edit", methods=["GET", "POST"])
 def admin_movies_edit(movie_id):
