@@ -18,14 +18,13 @@ CREATE TABLE IF NOT EXISTS Doctor (
     name TEXT NOT NULL,
     phone TEXT,
     email TEXT NOT NULL UNIQUE,
-    age TEXT,
     gender TEXT,
     specialty TEXT,
     description TEXT,
     years_of_practice TEXT,
     doctors_address TEXT,
     is_available BOOLEAN NOT NULL DEFAULT False,
-    user_id INTEGER UNIQUE,
+    user_id INTEGER UNIQUE
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
