@@ -1,4 +1,4 @@
-
+/* register page css */
 .signup-con{
     display: flex;
     flex-direction: row;
@@ -24,4 +24,157 @@
 
     display: flex;
     flex-direction: column;
+}
+
+/* login page css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to top left, #ceadae, #ebcfc2, #e3b8b2, #f4d3d3); /* تدرج الألوان */
+}
+
+.login-con {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30px; /* تغويش بين الصورة ومعلومات تسجيل الدخول */
+}
+
+.login-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.login-form {
+    background-color: #c1b4b280; /* لون الخلفية مع نسبة شفافية */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%; /* تم تعديل العرض هنا */
+    max-width: 400px; /* تحديد حد أقصى للعرض */
+}
+
+.login-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #6c5c5c; /* لون النص */
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form input[type="submit"] {
+    background-color: #e4d45c; /* لون زر الإرسال */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #d2c6c4; /* لون زر الإرسال عند التحويش */
+}
+
+.login-img {
+    background-image: url('55.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+}
+/* login page css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to top left, #ceadae, #ebcfc2, #e3b8b2, #f4d3d3); /* تدرج الألوان */
+}
+
+.login-con {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: auto; /* توسيط المعلومات في الجهة اليمنى */
+    
+}
+
+.login-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.login-form {
+    background-color: #c1b4b280; /* لون الخلفية مع نسبة شفافية */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%; /* تم تعديل العرض هنا */
+    max-width: 400px; /* تحديد حد أقصى للعرض */
+}
+
+.login-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #6c5c5c; /* لون النص */
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form input[type="submit"] {
+    background-color: #e4d45c; /* لون زر الإرسال */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #d2c6c4; /* لون زر الإرسال عند التحويش */
+}
+
+.login-img {
+    background-image: url('55.jpg');
+    background-size: 55% 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+    width: 100%; 
+    height: 100vh;
 }

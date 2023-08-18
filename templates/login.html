@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Login</title>
+    <link rel="stylesheet" href="../static/css/in_up_style.css">
+    <title>Login Page</title>
 </head>
 <body>
-    <section>
-        <div class="login">
-            <form action="/login" method="post">
-                <label for="">email</label>
-                <input type="email" name="email" placeholder="Email">
-                <label for="">phone number</label>
-                <input type="tel">
-                <label for="">password</label>
-                <input type="password" name="password" >
-                <input type="submit" value="Login">
-            </form>
-    
-         </div>  
-         <div class="imgsign">
-
-         </div>
-
+    <section class="login-con">
+        <div class="login-img"></div>
+        <form action="/login" class="login-form" method="post">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            
+            <input type="submit" value="Login">
+        </form>
     </section>
-   
-     
-    
 </body>
 </html>
