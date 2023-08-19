@@ -1,4 +1,8 @@
-
+body{
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
 .signup-con{
     display: flex;
     flex-direction: row;
@@ -7,13 +11,21 @@
     height: 100%;
     width: 100%;
 }
-.signup-form{
+.form-con{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 50%;
+}
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: fit-content;
 }
 .signup-img{
 
@@ -22,6 +34,30 @@
 }
 .signup-form {
 
-    display: flex;
-    flex-direction: column;
+    gap: 10px;
+    
+}
+input{
+    width: 300px;
+    height: 30px;
+    border-color: rgb(0, 132, 255) ;
+    border-radius: 10px;
+    
+    
+}
+
+ .signup-submit{
+    position: absolute;
+    bottom: 50px;
+    height: 30px;
+    width: 150px;
+    border-radius: 50px;
+    background-color: aliceblue;
+    border-color: rgb(0, 132, 255);
+    font-size: large;
+ }   
+label {
+    font-family:Arial, Helvetica, sans-serif;
+   font-size:medium;
+   color: gray;
 }
