@@ -1,7 +1,10 @@
 body{
-    height: 100vh;
-    margin: 0;
-    overflow: hidden;
+    
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-image: linear-gradient(to top left, #ceadae, #ebcfc2, #e3b8b2, #f4d3d3); 
+    
 }
 .signup-con{
     display: flex;
@@ -61,3 +64,4 @@ label {
    font-size:medium;
    color: gray;
 }
+
