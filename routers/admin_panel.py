@@ -13,7 +13,7 @@ admin_router = Blueprint(
 @admin_router.route("/")
 def admin_specialty_list():
     specialty = db.execute("SELECT * FROM specialty;")
-    return render_template("admin/specialty/adminLayout.html", specialty=specialty)
+    return render_template("admin/adminLayout.html", specialty=specialty)
 
 
 @admin_router.route("/specialty_add", methods=["GET", "POST"])
@@ -26,6 +26,7 @@ def admin_specialty_add():
         )
     else:
         name = request.form.get("name")
+        image = request.files.get("image")
 
         res = requests.post(
             "https://api.imgbb.com/1/upload",
@@ -49,7 +50,7 @@ def admin_specialty_add():
         return redirect("/admin")
     
 @admin_router.route("/specialty")
-def admin_doctor():
+def admin_doctor_list():
     Doctor = db.execute("SELECT * FROM Doctor;")
     return render_template("admin/specialty/specialty_add.html", Doctor=Doctor)
 
@@ -105,11 +106,11 @@ def admin_doctors_add():
         return redirect("/admin/specialty/doctor_add")
     
 
-@admin_router.route("/movies/<movie_id>/edit", methods=["GET", "POST"])
-def admin_movies_edit(movie_id):
+@admin_router.route("/specialty/edit", methods=["GET", "POST"])
+def admin_specialty_edit():
     if request.method == "GET":
         try:
-            movie = db.execute("SELECT * FROM movies WHERE id=?;", movie_id)[0]
+            specialty = db.execute("SELECT * FROM specialty ORDER BY name ASC;")[0]
         except:
             return render_template("404.html")
         genres = db.execute(
