@@ -32,15 +32,15 @@ def login_handler():
     return redirect("/")
 
 
-@account_router.route("/register", methods=["GET", "POST"])
+@account_router.route("/sign_up", methods=["GET", "POST"])
 def registeration_handler():
     if request.method == "GET":
         return render_template("register.html")
 
     name = request.form.get("name", None)
     email = request.form.get("email", None)
-    pass1 = request.form.get("pass1", None)
-    pass2 = request.form.get("pass2", None)
+    pass1 = request.form.get("password1", None)
+    pass2 = request.form.get("password2", None)
     phone = request.form.get("phone", None)
     birthdate = request.form.get("birthdate", None)
     gender = request.form.get("gender", None)

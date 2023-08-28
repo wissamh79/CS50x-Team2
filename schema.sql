@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Doctor (
     years_of_practice TEXT,
     doctors_address TEXT,
     is_available BOOLEAN NOT NULL DEFAULT False,
-    user_id INTEGER UNIQUE
+    user_id INTEGER UNIQUE,
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS specialty (
 
 CREATE TABLE IF NOT EXISTS patient_reservation (
     id INTEGER PRIMARY KEY,
+    reservation DATE,
     patient_id INTEGER,
     doctor_id INTEGER,
     FOREIGN KEY (patient_id) REFERENCES user(id) ON DELETE CASCADE,
