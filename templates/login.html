@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="stylesheet" href="../static/css/in_up_style.css">
+    <title>Login Page</title>
 </head>
 <body>
-    {% if get_flashed_messages() %}
-        <header>
-            <div class="alert alert-danger mb-0 text-center" role="alert">
-                {{ get_flashed_messages() | join(" ") }}
-            </div>
-        </header>
-        {% endif %}
-    <form action="/login" method="post">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" >
-        <input type="submit" value="Login">
-    </form>
+    <section class="login-con">
+        <div class="login-img"></div>
+        <form action="/login" class="login-form" method="post">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            
+            <input type="submit" value="Login">
+        </form>
+    </section>
+    
 </body>
 </html>
