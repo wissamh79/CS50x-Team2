@@ -4,13 +4,13 @@ body %}
 
 <!------------------------------------ specialtys ------------------------------------------>
 <div class="specialties">
-  <p class="specialtiess-p">specialties</p>
+  <p class="specialtiess-p">specialty</p>
   <div class="my-flex">
-    {% for specialty in specialties %}
+    {% for specialty-x in specialty %}
     <div class="card">
       <a
         class="card-a"
-        href="{{url_for('specialtys_router.specialty_details', specialty_name=specialty.name)}}"
+        href="{{url_for('specialty_router.specialty_details', specialty_name=specialty.name)}}"
       >
         <img class="card-image" src="{{specialty.poster}}" alt=""
       /></a>

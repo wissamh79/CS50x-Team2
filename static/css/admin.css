@@ -2,110 +2,38 @@ body{
     height: 100vh;
     margin: 0;
     overflow: hidden;
-}
-.spec-con {
-    
-    height: 100%;
     width: 100%;
-    background-color:
-    
-
-
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    padding-right: 100px;
+    padding-left: 100px;
+    margin: 0;
+    overflow-y: scroll;
+    background-color:#ceadaeee ;
 }
-.spece-add {
+
+
+.contianer{
     display: flex;
-    align-items: start;
-    justify-content:start;
-    padding-top: 27px;
-    gap: 150px;
-
-   
+   align-items: start;
+   justify-content: space-between;
+   gap: 80px;
     
+ 
     
-
-
-
-}
-
-span {
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: 60px;
-    margin-left: 100px;
-}
-.add{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: medium;
-}
-.speci-add {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
     margin-top: 200px;
-    margin-left: 80px;
-    gap: 10px;
-    
-    
-    
-}
-
-.specilty {
-    border-radius: 30px;
-    border-color: #76E0D4 ;
-    font-family: Arial, Helvetica, sans-serif ;
-
-
-}
-
-button:hover {
-    background-color:#76E0D4 ;
-    
-}
-
-.doctors-add {
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
-    position: absolute;
-    right: 20px;
-    top:230px;
-    margin-right: 220px;
-    
-    
-   padding-top: 20px;
-}
-p {
-    position: absolute;
-    top: 10px;
-    right:130px;
-    margin-right: 300px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: 60px;
-}
-.do-ed {
-    background-color: #76E0D4;
-    height: 30px;
-    width: 250px;
-    border-radius: 50px;
+   margin-right: 200px;
    
-    
 }
-.bu-do{
-    position: absolute;
-    right: 20px;
-    margin-top: 5px;
+
+
+.speci {
+   background-color: #ffffff80;
+   height: 300px;
+   width: 1000px;
+   border-radius: 10px;
+
 }
-.doctoradd {
-    position: absolute;
-    top: 30px;
-    right: 250px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: medium;
-}
+
+  
