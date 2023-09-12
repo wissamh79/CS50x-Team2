@@ -22,5 +22,5 @@ def specialty_details(specialty_name):
     )
    
     return render_template(
-        "specialty.html", specialty=specialty, doctor=doctor
+        "user/specialty.html", specialty=specialty, doctor=doctor
     )

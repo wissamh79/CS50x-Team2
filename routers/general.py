@@ -14,4 +14,4 @@ def index():
    
     specialties = db.execute("SELECT * FROM specialty ORDER BY name DESC LIMIT 10;")
    
-    return render_template("index.html", specialties=specialties)
+    return render_template("user/index.html", specialties=specialties)

@@ -1,4 +1,4 @@
-pytfrom flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template
 from flask_session import Session 
 from database import db
 
